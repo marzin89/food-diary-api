@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Hämtar mongoose
 const mongoose = require('mongoose');
 // URL till databasen
-const mongoDB = 'mongodb://localhost:27017/foodDiary';
+const mongoDB = 'mongodb+srv://marco:13uD4yw$E9}hCc*-@cluster0.dydxl.mongodb.net/foodDiary?retryWrites=true&w=majority';
 // Ansluter till databasen och lagrar anslutningen
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
