@@ -6,7 +6,10 @@ const app = express();
 const bodyParser = require('body-parser');
 const {urlencoded} = require('body-parser');
 // Väljer port
-const port = 3030;
+let port = process.env.PORT;
+if (port == null || port == '') {
+    port = 3030;
+}
 // Definierar mapp för visning av filer
 app.use(express.static('public'));
 // Läser in body-parser för att kunna lägga till och uppdatera kurser
@@ -525,5 +528,5 @@ function addFoodToDB(body) {
 }
 
 app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
+    console.log(`App listening at ${port}.`);
 });
