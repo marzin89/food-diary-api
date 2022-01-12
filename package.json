@@ -4,7 +4,7 @@
   "description": "This is a combined food diary and food database application. You can browse foods on the homepage for information on calories, macronutrient content etc. In order to create and use a food diary, you'll need to create an account and sign in. On the admin page, you can add, delete, update and read your meals. You can also add food items to the database. The latter is encouraged, as the usability of the application depends on the size of the food database. The application is built with Node.js/Express and all data is stored in a MongoDB database. ",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "Node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marco Zintl",
