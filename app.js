@@ -1,5 +1,7 @@
 // Hämtar express
 const express = require('express');
+// Hämtar cors
+const cors = require('cors');
 // Läser in express
 const app = express();
 // Hämtar body-parser
@@ -15,6 +17,8 @@ app.use(express.static('public'));
 // Läser in body-parser för att kunna lägga till och uppdatera kurser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+// Möjliggör CORS-anrop
+app.use(cors());
 // Hämtar mongoose
 const mongoose = require('mongoose');
 // URL till databasen
