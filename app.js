@@ -1,7 +1,5 @@
 // Hämtar express
 const express = require('express');
-// Hämtar cors
-const cors = require('cors');
 // Läser in express
 const app = express();
 // Hämtar body-parser
@@ -17,13 +15,6 @@ app.use(express.static('public'));
 // Läser in body-parser för att kunna lägga till och uppdatera kurser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-// Möjliggör CORS-anrop
-app.use(cors());
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 // Hämtar mongoose
 const mongoose = require('mongoose');
 // URL till databasen
