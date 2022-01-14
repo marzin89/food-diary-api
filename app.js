@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // Möjliggör CORS-anrop
-app.use(cors());
+app.use(cors({origin: 'http://localhost:3000'}));
 // Hämtar mongoose
 const mongoose = require('mongoose');
 // URL till databasen
