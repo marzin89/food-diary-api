@@ -251,7 +251,7 @@ app.post('/meals', function(req, res) {
     });
 
     // Lägger till måltiden
-    document.save(function(err, document) {
+    document.save(function(err) {
 
         // Skickar statuskod 500 om det inte gick att lägga till måltiden
         if (err) {
@@ -260,7 +260,7 @@ app.post('/meals', function(req, res) {
         // Skickar måltiden vid lyckad lagring
         } else {
             res.contentType('application/json');
-            const json = JSON.stringify(document);
+            const json = JSON.stringify(body);
             res.status(200).send(json);
         }
     });
@@ -339,7 +339,7 @@ app.put('/meals/id/:ID/user/:user', function(req, res) {
             totalAsh:           body.totalAsh,
             date:               body.date,
         },
-        function(err, document) {
+        function(err) {
 
         // Skickar statuskod 500 om det inte gick att uppdatera måltiden
         if(err) {
@@ -348,7 +348,7 @@ app.put('/meals/id/:ID/user/:user', function(req, res) {
         // Skickar måltiden vid lyckad uppdatering
         } else {
             res.contentType('application/json');
-            const json = JSON.stringify(document);
+            const json = JSON.stringify(body);
             res.status(200).send(json);
         }
     })
