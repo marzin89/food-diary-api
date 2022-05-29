@@ -5,7 +5,7 @@ const cors = require('cors');
 // Läser in express
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: ['https://food-diary-project.herokuapp.com/', 'http://localhost:3000'],
 }));
 
 // Hämtar body-parser
@@ -262,29 +262,6 @@ app.post('/meals', function(req, res) {
             res.contentType('application/json');
             const json = JSON.stringify(body);
             res.status(200).send(json);
-        }
-    });
-});
-
-app.get('/meals', function(req, res) {
-
-    // Hämtar alla måltider i omvänd datumordning
-    meal.find().sort({ date: -1 }).exec(function(err, meals) {
-
-        // Skickar statuskod 404 om tabellen är tom
-        if (!meals) {
-            res.status(404).send();
-
-        // Skickar alla måltider
-        } else {
-            res.contentType('application/json');
-            const json = JSON.stringify(meals);
-            res.status(200).send(json);
-        }
-
-        // Skickar statuskod 500 om det inte gick att hämta måltider
-        if (err) {
-            res.status(500).send();
         }
     });
 });
