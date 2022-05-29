@@ -5,7 +5,7 @@ const cors = require('cors');
 // Läser in express
 const app = express();
 app.use(cors({
-    origin: ['https://food-diary-project.herokuapp.com/', 'http://localhost:3000'],
+    origin: ['https://food-diary-project.herokuapp.com', 'http://localhost:3000'],
 }));
 
 // Hämtar body-parser
