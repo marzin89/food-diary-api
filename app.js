@@ -1,9 +1,13 @@
 // Hämtar express
 const express = require('express');
+
+// Hämtar cors
 const cors = require('cors');
 
 // Läser in express
 const app = express();
+
+// Betrodda domäner
 app.use(cors({
     origin: ['https://food-diary-project.herokuapp.com', 'http://localhost:3000'],
 }));
@@ -12,15 +16,17 @@ app.use(cors({
 const bodyParser = require('body-parser');
 const {urlencoded} = require('body-parser');
 
-// Väljer port
+// Använder den port som finns lagrad i miljövariabeln, annars 3030
 let port = process.env.PORT;
+
 if (port == null || port == '') {
     port = 3030;
 }
+
 // Definierar mapp för visning av filer
 app.use(express.static('public'));
 
-// Läser in body-parser för att kunna lägga till och uppdatera kurser
+// Läser in body-parser för att kunna lägga till poster
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -185,7 +191,7 @@ app.get('/foods/name/:name', function(req, res) {
             res.status(404).send();
 
         } else {
-            // Skickar livsmedlet eller ett tomt objekt
+            // Skickar statuskod 200 och livsmedlet
             res.contentType('application/json');
             const json = JSON.stringify(document);
             res.status(200).send(json);
@@ -214,7 +220,7 @@ app.get('/foods/name/:name/category/:category', function(req, res) {
         if (!document) {
             res.status(404).send();
 
-        // Skickar livsmedlet
+        // Skickar statuskod 200 och livsmedlet
         } else {
             res.contentType('application/json');
             const json = JSON.stringify(document);
@@ -228,7 +234,7 @@ app.get('/foods/name/:name/category/:category', function(req, res) {
     });
 });
 
-// Lägger till måltider och livsmedel som saknas i databasen
+// Lägger till måltider
 app.post('/meals', function(req, res) {
 
     // Läser in uppgifterna från fetch-anropet
@@ -257,7 +263,7 @@ app.post('/meals', function(req, res) {
         if (err) {
             res.status(500).send();
 
-        // Skickar måltiden vid lyckad lagring
+        // Skickar statuskod 200 och måltiden vid lyckad lagring
         } else {
             res.contentType('application/json');
             const json = JSON.stringify(body);
@@ -279,7 +285,7 @@ app.get('/meals/user/:user', function(req, res) {
         if (!meals) {
             res.status(404).send();
 
-        // Skickar alla måltider
+        // Skickar statuskod 200 och alla måltider
         } else {
             res.contentType('application/json');
             const json = JSON.stringify(meals);
@@ -293,7 +299,7 @@ app.get('/meals/user/:user', function(req, res) {
     });
 });
 
-// Uppdaterar måltider
+// Uppdaterar måltider för en användare
 app.put('/meals/id/:ID/user/:user', function(req, res) {
 
     // Läser in ID, användarnamn och body från fetch-anropet
@@ -322,7 +328,7 @@ app.put('/meals/id/:ID/user/:user', function(req, res) {
         if(err) {
             res.status(500).send();
 
-        // Skickar måltiden vid lyckad uppdatering
+        // Skickar statuskod 200 och måltiden vid lyckad uppdatering
         } else {
             res.contentType('application/json');
             const json = JSON.stringify(body);
@@ -331,7 +337,7 @@ app.put('/meals/id/:ID/user/:user', function(req, res) {
     })
 })
 
-// Raderar måltider
+// Raderar måltider för en användare
 app.delete('/meals/id/:ID/user/:user', function(req, res) {
 
     // Läser in ID och användarnamn från fetch-anropet
@@ -345,7 +351,7 @@ app.delete('/meals/id/:ID/user/:user', function(req, res) {
         if (err) {
             res.status(500).send();
 
-        // Skickar måltiden vid lyckad borttagning
+        // Skickar statuskod 200 och måltiden vid lyckad borttagning
         } else {
             res.contentType('application/json');
             const json = JSON.stringify(document);
@@ -410,7 +416,7 @@ app.get('/meals/user/:user/range/:range', function(req, res) {
                 }
             });
             
-            // Skickar måltiderna
+            // Skickar statuskod 200 och måltiderna
             res.contentType('application/json');
             const json = JSON.stringify(mealArr);
             res.status(200).send(json);
