@@ -345,7 +345,7 @@ app.delete('/meals/id/:ID/user/:user', function(req, res) {
     const user = req.params.user;
 
     // Raderar måltiden
-    meal.deleteOne({mealID: ID, username: user}, function(err, document) {
+    meal.findOneAndDelete({mealID: ID, username: user}, function(err, document) {
 
         // Skickar statuskod 500 om det inte gick att radera måltiden
         if (err) {
